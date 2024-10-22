@@ -1,64 +1,71 @@
 import 'package:flutter/material.dart';
-import 'page2.dart';
+import 'login.dart';
+import 'page2.dart'; // pastikan file page2.dart ada dan benar
 
 void main() => runApp(MaterialApp(
   debugShowCheckedModeBanner: false,
-  home: home(), //halaman awal ketika program pertama dijalankan
+  home: LoginPage(),
 ));
 
-class home extends StatelessWidget {
-  const home({ Key? key }) : super(key: key);
+class Home extends StatelessWidget {
+  final String username;
+  final String sekolah;
+
+  const Home({super.key, required this.username, required this.sekolah});
 
   @override
-  Widget build (BuildContext context) {
+  Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        width: MediaQuery.of(context).size.width, //lebar diatur sesuai dengan lebar layar
+        width: MediaQuery.of(context).size.width,
         height: MediaQuery.of(context).size.height,
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage("assets/images/background.jpeg"),
             fit: BoxFit.cover,
           ),
         ),
-
         child: Stack(
-          alignment: Alignment.center ,
+          alignment: Alignment.center,
           children: <Widget>[
             Container(
               width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.shortestSide, //tinggi menyesuaikan isi konten di dalam content
-              padding: EdgeInsets.all(20.0),
+              height: MediaQuery.of(context).size.shortestSide,
+              padding: const EdgeInsets.all(20.0),
               alignment: Alignment.center,
               child: Card(
-                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0),),
-                color: Color.fromRGBO(240, 255, 255, 0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+                color: const Color.fromRGBO(240, 255, 255, 0),
                 child: Center(
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: <Widget>[
-
-                      CircleAvatar(
+                      const CircleAvatar(
                         radius: 100.0,
-                        backgroundImage:
-                        AssetImage("assets/images/hana.jpg"),
+                        backgroundImage: AssetImage("assets/images/hana.jpg"),
                       ),
-                      Text("Hana Nadira Savaira",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 18, color: Colors.black)
+                      Text(
+                        username,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 18, color: Colors.black),
                       ),
-
-                      Text("Vocational High School Students at SMK Wikrama Bogor",
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 16, color: Color(0xF9916B0D))
+                      Text(
+                        sekolah,
+                        textAlign: TextAlign.center,
+                        style: const TextStyle(
+                            fontSize: 16, color: Color(0xF9916B0D)),
                       ),
-
-                      TextButton(onPressed: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => Page2()),
-                        );
-                      }, child: Text('See More')
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Page2()),
+                          );
+                        },
+                        child: const Text('See More'),
                       ),
                     ],
                   ),
